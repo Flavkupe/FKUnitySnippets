@@ -1,0 +1,9 @@
+build
+.vs
+Library
+Temp
+obj
+Logs
+WebGL Builds
+connectedwebgl.zip
+FKUnitySnippetsLibrary*
