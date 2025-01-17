@@ -8,11 +8,22 @@ public class WebInputManager : MonoBehaviour
     private DemoObject[] _demoObjects;
 
     [SerializeField]
+    private Canvas _canvas;
+
+    [SerializeField]
     private GameObject _notAvailableText;
+
+    [SerializeField]
+    private string _testComponent;
 
     public void Start()
     {
         _demoObjects = Resources.LoadAll<DemoObject>("Prefabs");
+
+        if (!string.IsNullOrEmpty(_testComponent))
+        {
+            SwitchComponent(_testComponent);
+        }
     }
 
     public void SwitchComponent(string componentName)
@@ -40,5 +51,10 @@ public class WebInputManager : MonoBehaviour
         }
 
         _currentDemoObject = Instantiate(demoObject);
+
+        if (_currentDemoObject.Type == DemoObject.DemoType.UI)
+        {
+            _currentDemoObject.transform.SetParent(_canvas.transform, false);
+        }
     }
 }

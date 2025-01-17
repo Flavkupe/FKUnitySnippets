@@ -557,7 +557,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7186cdee3f45f45876f7480193fdef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 463733401}
   _notAvailableText: {fileID: 946545238}
+  _testComponent: ShakyText
 --- !u!4 &1640298493
 Transform:
   m_ObjectHideFlags: 0

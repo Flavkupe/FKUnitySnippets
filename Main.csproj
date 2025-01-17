@@ -1102,9 +1102,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="FKUnitySnippets.csproj">
-      <Project>{D095FAE0-8EBF-3155-12AF-9C308FD72507}</Project>
-      <Name>FKUnitySnippets</Name>
+    <ProjectReference Include="FKUnitySnippetsLibrary.csproj">
+      <Project>{EAE3FDB0-C355-AF95-518A-5183E64E8EE0}</Project>
+      <Name>FKUnitySnippetsLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
