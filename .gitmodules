@@ -1,3 +1,6 @@
 [submodule "Assets/FKUnitySnippetsLibrary"]
 	path = Assets/FKUnitySnippetsLibrary
 	url = https://github.com/Flavkupe/FKUnitySnippetsLibrary
+[submodule "FKUnitySnippetsWeb"]
+	path = FKUnitySnippetsWeb
+	url = https://github.com/Flavkupe/FKUnitySnippetsWeb.git
