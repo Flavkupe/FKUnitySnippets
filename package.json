@@ -1,0 +1,11 @@
+{
+  "name": "fk-unity-snippets",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Flavkupe/FKUnitySnippets/",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d build"
+  }
+}
