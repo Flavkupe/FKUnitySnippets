@@ -30,10 +30,7 @@
           return;
         }
 
-
-        console.log('Message from parent:', event.data.data);
         var jsonData = JSON.parse(event.data.data);
-        console.log(jsonData);
         globalUnityInstance.SendMessage(jsonData.objectName, jsonData.methodName, jsonData.value);
       }
 
