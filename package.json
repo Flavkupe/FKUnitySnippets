@@ -8,7 +8,7 @@
   "scripts": {
     "deploy-app": "gh-pages -d build",
     "deploy-web": "cd FKUnitySnippetsWeb && npm run deploy",
-    "deploy-all": "deploy-app && deploy-web",
+    "deploy-all": "npm run deploy-app && npm run deploy-web",
     "sync-submodules": "git submodule foreach git pull origin main && git add . && git commit -m \"Update submodules to the latest versions\""
   }
 }
