@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 114412540082886946}
   - component: {fileID: 7405349362613001995}
   - component: {fileID: -5400023249098265622}
+  - component: {fileID: 8199585996026129930}
+  - component: {fileID: 6871713825052841360}
   m_Layer: 0
   m_Name: SpinningObject
   m_TagString: Untagged
@@ -115,4 +117,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa29ff7d16a1ef47bc346cfcadbf043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _demoType: 0
   _componentName: SpinningObject
+--- !u!114 &8199585996026129930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261438428694021082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d385fdece80deb40b1173dc2ca9aaa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputOptions:
+  - effectType: 0
+    fieldType: 0
+    keyPair: 2
+    selectedField: _rotationSpeed
+    value: 10
+    vectorValue: {x: 0, y: 0, z: 0}
+    values: []
+    vectorValues: []
+  - effectType: 1
+    fieldType: 1
+    keyPair: 0
+    selectedField: _axis
+    value: 0
+    vectorValue: {x: 0, y: 0, z: 0}
+    values:
+    - 0
+    vectorValues:
+    - {x: 1, y: 0, z: 0}
+    - {x: 0, y: 1, z: 0}
+    - {x: 0, y: 0, z: 1}
+--- !u!114 &6871713825052841360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261438428694021082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53b1c11590c1dd4bab9269dd0edc59f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

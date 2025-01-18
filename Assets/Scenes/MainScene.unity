@@ -559,7 +559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 463733401}
   _notAvailableText: {fileID: 946545238}
-  _testComponent: 
+  _testComponent: ShakyText
 --- !u!4 &1640298493
 Transform:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main", "Main.csproj", "{EDB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FKUnitySnippetsLibrary", "FKUnitySnippetsLibrary.csproj", "{EAE3FDB0-C355-AF95-518A-5183E64E8EE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{9A908D2B-DAB8-E3D7-7042-A9ECA7A882D6}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main", "Main.Player.csproj", "{40644A75-5162-4C78-A6E2-E629A89D55F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FKUnitySnippetsLibrary", "FKUnitySnippetsLibrary.Player.csproj", "{113A7455-D7F2-B016-42E4-0C111805C448}"
@@ -23,6 +25,10 @@ Global
 		{EAE3FDB0-C355-AF95-518A-5183E64E8EE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAE3FDB0-C355-AF95-518A-5183E64E8EE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAE3FDB0-C355-AF95-518A-5183E64E8EE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A908D2B-DAB8-E3D7-7042-A9ECA7A882D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A908D2B-DAB8-E3D7-7042-A9ECA7A882D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A908D2B-DAB8-E3D7-7042-A9ECA7A882D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A908D2B-DAB8-E3D7-7042-A9ECA7A882D6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40644A75-5162-4C78-A6E2-E629A89D55F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{40644A75-5162-4C78-A6E2-E629A89D55F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40644A75-5162-4C78-A6E2-E629A89D55F4}.Release|Any CPU.ActiveCfg = Release|Any CPU

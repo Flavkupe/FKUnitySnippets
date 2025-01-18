@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4400494434447369563}
   - component: {fileID: 2116025485353784973}
   - component: {fileID: 3923722913909965202}
+  - component: {fileID: 7278675578208071675}
+  - component: {fileID: 7015093589032543619}
   m_Layer: 0
   m_Name: OscillatingObject
   m_TagString: Untagged
@@ -102,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1
-  _magnitude: 1
+  _magnitude: 0.94
   _axis: {x: 0, y: 1, z: 0}
 --- !u!114 &3923722913909965202
 MonoBehaviour:
@@ -116,4 +118,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa29ff7d16a1ef47bc346cfcadbf043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _demoType: 0
   _componentName: OscillatingObject
+--- !u!114 &7278675578208071675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6729572645169937610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53b1c11590c1dd4bab9269dd0edc59f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7015093589032543619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6729572645169937610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d385fdece80deb40b1173dc2ca9aaa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputOptions:
+  - effectType: 0
+    fieldType: 0
+    keyPair: 2
+    selectedField: _speed
+    value: 1
+    vectorValue: {x: 0, y: 0, z: 0}
+    values:
+    - 5
+    - 10
+    vectorValues: []
+  - effectType: 0
+    fieldType: 0
+    keyPair: 3
+    selectedField: _magnitude
+    value: 0.5
+    vectorValue: {x: 0, y: 0, z: 0}
+    values:
+    - 5
+    - 10
+    vectorValues: []
+  - effectType: 1
+    fieldType: 1
+    keyPair: 0
+    selectedField: _axis
+    value: 1
+    vectorValue: {x: 0, y: 0, z: 0}
+    values:
+    - 5
+    - 10
+    vectorValues:
+    - {x: 0, y: 1, z: 0}
+  - effectType: 1
+    fieldType: 1
+    keyPair: 1
+    selectedField: _axis
+    value: 1
+    vectorValue: {x: 0, y: 0, z: 0}
+    values:
+    - 5
+    - 10
+    vectorValues:
+    - {x: 1, y: 0, z: 0}

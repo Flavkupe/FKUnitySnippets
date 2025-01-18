@@ -1,9 +1,11 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class WebInputManager : MonoBehaviour
 {
     private DemoObject _currentDemoObject;
+    public DemoObject CurrentDemoObject => _currentDemoObject;
 
     private DemoObject[] _demoObjects;
 

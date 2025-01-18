@@ -64,6 +64,7 @@
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\OscillatingObject.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\SpinningObject.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Text\TMPro\ShakyText.cs" />
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Interfaces\ICanReset.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary.asmdef" />
