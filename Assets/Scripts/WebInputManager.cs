@@ -42,7 +42,7 @@ public class WebInputManager : MonoBehaviour
 
         _currentDemoObject = null;
 
-        var demoObject = _demoObjects.FirstOrDefault(_demoObjects => string.Equals(_demoObjects.name, componentName, System.StringComparison.OrdinalIgnoreCase));
+        var demoObject = _demoObjects.FirstOrDefault(_demoObjects => string.Equals(_demoObjects.ComponentName, componentName, System.StringComparison.OrdinalIgnoreCase));
 
         if (demoObject == null)
         {
