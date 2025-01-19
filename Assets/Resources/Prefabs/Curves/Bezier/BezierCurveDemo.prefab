@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetObject: {fileID: 3092144001679229536}
-  _targetPoint: {x: 5, y: 0, z: 0}
-  _startingPoint: {x: -5, y: 0, z: 0}
+  _targetPoint: {x: 2.5, y: 0, z: 0}
+  _startingPoint: {x: -2.5, y: 0, z: 0}
   _controlPointOffset: 5
   _speed: 1
   _turnInMovementDirection: 1
@@ -231,7 +231,7 @@ MonoBehaviour:
     fieldType: 2
     trigger: 5
     specificKey: 97
-    descriptionType: 1
+    descriptionType: 0
     selectedField: _looping
     methodToInvoke: Reverse
     value: 1
@@ -246,7 +246,7 @@ MonoBehaviour:
     trigger: 6
     specificKey: 115
     descriptionType: 0
-    selectedField: _targetPoint
+    selectedField: _startingPoint
     methodToInvoke: Reverse
     value: 1
     vectorValue: {x: 0, y: 0, z: 0}
@@ -255,9 +255,37 @@ MonoBehaviour:
     customDescription: 
     targetObject: {fileID: 0}
   - effectType: 1
+    clickEffectType: 0
+    fieldType: 2
+    trigger: 7
+    specificKey: 115
+    descriptionType: 0
+    selectedField: _targetPoint
+    methodToInvoke: Reverse
+    value: 1
+    vectorValue: {x: 0, y: 0, z: 0}
+    values: []
+    vectorValues: []
+    customDescription: 
+    targetObject: {fileID: 8711291985179893575}
+  - effectType: 1
     clickEffectType: 1
     fieldType: 2
     trigger: 6
+    specificKey: 115
+    descriptionType: 1
+    selectedField: _targetPoint
+    methodToInvoke: Reverse
+    value: 1
+    vectorValue: {x: 0, y: 0, z: 0}
+    values: []
+    vectorValues: []
+    customDescription: 
+    targetObject: {fileID: 7758608686490709443}
+  - effectType: 1
+    clickEffectType: 1
+    fieldType: 2
+    trigger: 7
     specificKey: 115
     descriptionType: 1
     selectedField: _targetPoint
