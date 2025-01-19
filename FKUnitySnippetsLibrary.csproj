@@ -64,7 +64,8 @@
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\OscillatingObject.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\SpinningObject.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Text\TMPro\ShakyText.cs" />
-    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Interfaces\ICanReset.cs" />
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Curves\Bezier\BezierDemo.cs" />
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Curves\Bezier\Bezier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary.asmdef" />

@@ -26,12 +26,27 @@ public class DemoObject : MonoBehaviour
         GenerateDescriptionMessage();
     }
 
-    private void GenerateDescriptionMessage()
+    /// <summary>
+    /// Gets the specific component that is targeted for this demo.
+    /// </summary>
+    /// <returns></returns>
+    public Component GetDemoComponent()
     {
         var component = this.GetComponent(_componentName);
         if (component == null)
         {
             Debug.LogError($"Component {_componentName} not attached to {this.gameObject.name}.");
+            return null;
+        }
+
+        return component;
+    }
+
+    private void GenerateDescriptionMessage()
+    {
+        var component = GetDemoComponent();
+        if (component == null)
+        {
             return;
         }
 
@@ -39,7 +54,7 @@ public class DemoObject : MonoBehaviour
 
         
         var controls = new List<string>();
-        if (component is ICanReset)
+        if (component is MonoBehaviour && ReflectionHelper.HasResetStateMethod(component))
         {
             var resetMessage = "Space: Reset";
             controls.Add(resetMessage);

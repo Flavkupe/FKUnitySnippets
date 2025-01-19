@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5847151302090618261}
   - component: {fileID: 7128990508779040376}
   - component: {fileID: 474542875534486355}
-  - component: {fileID: 5029379605186006790}
   - component: {fileID: 7220610544634476194}
   m_Layer: 5
   m_Name: ShakyText
@@ -170,18 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _demoType: 1
   _componentName: ShakyText
---- !u!114 &5029379605186006790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7122730990652391217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c53b1c11590c1dd4bab9269dd0edc59f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7220610544634476194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,24 +184,30 @@ MonoBehaviour:
   _inputOptions:
   - effectType: 0
     fieldType: 0
-    keyPair: 2
+    trigger: 0
+    specificKey: 0
     selectedField: _angleMultiplier
+    methodToInvoke: 
     value: 0.5
     vectorValue: {x: 0, y: 0, z: 0}
     values: []
     vectorValues: []
   - effectType: 0
     fieldType: 0
-    keyPair: 3
+    trigger: 1
+    specificKey: 0
     selectedField: _speedMultiplier
+    methodToInvoke: 
     value: 0.5
     vectorValue: {x: 0, y: 0, z: 0}
     values: []
     vectorValues: []
   - effectType: 0
     fieldType: 0
-    keyPair: 4
+    trigger: 2
+    specificKey: 0
     selectedField: _curveScale
+    methodToInvoke: 
     value: 0.5
     vectorValue: {x: 0, y: 0, z: 0}
     values: []

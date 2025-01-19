@@ -4,34 +4,60 @@ using UnityEngine;
 [Serializable]
 public class InputOption
 {
-    public enum KeyPair
+    public enum Trigger
     {
         UpDown,
         LeftRight,
         QW,
         AS,
         ZX,
+        SpecificKey,
+        MouseClick,
+        MouseRightClick,
     }
 
     public enum EffectType
     {
         AddValueToField,
         ToggleBetweenValues,
+        CallsMethod,
+    }
+
+    public enum ClickEffectType
+    {
+        SetVector3ValueToPointer,
+        MoveObjectToPointer,
     }
 
     public enum FieldType
     {
         Float,
         Vector3,
+        Bool,
+    }
+
+    public enum DescriptionType
+    {
+        Default,
+        None,
+        Custom,
     }
 
     public EffectType effectType;
 
+    public ClickEffectType clickEffectType;
+
     public FieldType fieldType;
 
-    public KeyPair keyPair;
+    public Trigger trigger;
+
+    public KeyCode specificKey;
+
+    public DescriptionType descriptionType = DescriptionType.Default;
 
     public string selectedField;
+
+    public string methodToInvoke;
 
     public float value;
 
@@ -41,15 +67,63 @@ public class InputOption
 
     public Vector3[] vectorValues;
 
+    public string customDescription;
+
+    public GameObject targetObject;
+
+    public bool IsMouseTrigger => trigger == Trigger.MouseClick || trigger == Trigger.MouseRightClick;
+
     public string GetDescription()
     {
-        string keyDescription = keyPair switch
+        if (descriptionType == DescriptionType.Custom)
         {
-            KeyPair.UpDown => "Up/Down",
-            KeyPair.LeftRight => "Left/Right",
-            KeyPair.QW => "Q/W",
-            KeyPair.AS => "A/S",
-            KeyPair.ZX => "Z/X",
+            return customDescription;
+        }
+
+        if (descriptionType == DescriptionType.None)
+        {
+            return null;
+        }
+
+        if (this.IsMouseTrigger)
+        {
+            return GetMouseClickDescription();
+            
+        }
+        else
+        {
+            return GetKeypressDescription();
+        }   
+    }
+
+    private string GetMouseClickDescription()
+    {
+        var command = trigger == Trigger.MouseClick ? "Left" : "Right";
+
+        if (clickEffectType == ClickEffectType.SetVector3ValueToPointer)
+        {
+            return $"{command} click to set {selectedField}";
+        } else
+        {
+            if (targetObject == null)
+            {
+                return null;
+            }
+
+            return $"{command} click to move {targetObject.name}";
+        }
+    }
+
+    private string GetKeypressDescription()
+    {
+        string keyDescription = trigger switch
+        {
+            Trigger.UpDown => "Up/Down",
+            Trigger.LeftRight => "Left/Right",
+            Trigger.QW => "Q/W",
+            Trigger.AS => "A/S",
+            Trigger.ZX => "Z/X",
+            Trigger.SpecificKey => specificKey.ToString(),
             _ => null
         };
 

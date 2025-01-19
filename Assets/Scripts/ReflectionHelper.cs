@@ -2,24 +2,45 @@ using UnityEngine;
 using System;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Linq;
 
-[RequireComponent(typeof(DemoObject))]
-public class ReflectionHelper : MonoBehaviour
+public static class ReflectionHelper
 {
-    private List<FieldInfo> _fieldInfoList = new();
-
-    public List<string> GetSerializedFieldNames()
+    public static bool HasResetStateMethod(Component component)
     {
-        var component = GetDemoComponent();
+        return HasMethodByName(component, "ResetState");
+    }
+
+    private static bool HasMethodByName(Component component, string methodName)
+    {
+        Type type = component.GetType();
+        MethodInfo methodInfo = type.GetMethod(methodName, BindingFlags.Public | BindingFlags.Instance);
+
+        if (methodInfo != null && methodInfo.ReturnType == typeof(void))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+    public static List<string> GetSerializedFieldNames(DemoObject demoObject, string fieldType)
+    {
+        var component = demoObject.GetDemoComponent();
         if (component == null)
         {
             return new List<string>();
         }
 
-        ListSerializedFields(component);
+        FieldInfo[] fields = component.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+        var fieldInfoList = fields.Where(field => 
+            field.FieldType.Name == fieldType &&
+            Attribute.IsDefined(field, typeof(SerializeField))).ToList();
 
         var fieldNames = new List<string>();
-        foreach (var item in _fieldInfoList)
+        foreach (var item in fieldInfoList)
         {
             fieldNames.Add(item.Name);
         }
@@ -27,36 +48,36 @@ public class ReflectionHelper : MonoBehaviour
         return fieldNames;
     }
 
-    private Component GetDemoComponent()
+    /// <summary>
+    /// Gets public methods with no parameters.
+    /// </summary>
+    /// <returns></returns>
+    public static List<string> GetPublicMethodNames(DemoObject demoObject)
     {
-        var demoObject = GetComponent<DemoObject>();
-        var componentName = demoObject.ComponentName;
-        var component = demoObject.gameObject.GetComponent(componentName);
+        var component = demoObject.GetDemoComponent();
         if (component == null)
         {
-            Debug.LogError($"Component {componentName} not attached to {demoObject.gameObject.name}.");
-            return null;
+            return new List<string>();
         }
 
-        return component;
-    }
+        MethodInfo[] methods = component.GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance);
 
-    private void ListSerializedFields(Component component)
-    {
-        _fieldInfoList.Clear();
-        FieldInfo[] fields = component.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
-        foreach (FieldInfo field in fields)
+        var methodNames = new List<string>();
+        foreach (var method in methods)
         {
-            if (Attribute.IsDefined(field, typeof(SerializeField)))
+            // only return void methods with no parameters
+            if (method.GetParameters().Length == 0 && method.ReturnType.Name == "Void")
             {
-                _fieldInfoList.Add(field);
+                methodNames.Add(method.Name);
             }
         }
+
+        return methodNames;
     }
 
-    public void SetFieldValue(string fieldName, object value)
+    public static void SetFieldValue(DemoObject demoObject, string fieldName, object value)
     {
-        var component = GetDemoComponent();
+        var component = demoObject.GetDemoComponent();
         if (component == null)
         {
             return;
