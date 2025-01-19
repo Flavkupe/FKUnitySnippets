@@ -133,21 +133,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputOptions:
   - effectType: 0
+    clickEffectType: 0
     fieldType: 0
-    keyPair: 2
+    trigger: 2
     specificKey: 0
-    selectedField: _speed
-    methodToInvoke: 
-    value: 1
-    vectorValue: {x: 0, y: 0, z: 0}
-    values:
-    - 5
-    - 10
-    vectorValues: []
-  - effectType: 0
-    fieldType: 0
-    keyPair: 3
-    specificKey: 0
+    descriptionType: 0
     selectedField: _speed
     methodToInvoke: 
     value: 0.5
@@ -156,10 +146,30 @@ MonoBehaviour:
     - 5
     - 10
     vectorValues: []
-  - effectType: 1
-    fieldType: 1
-    keyPair: 0
+    customDescription: 
+    targetObject: {fileID: 0}
+  - effectType: 0
+    clickEffectType: 0
+    fieldType: 0
+    trigger: 3
     specificKey: 0
+    descriptionType: 0
+    selectedField: _magnitude
+    methodToInvoke: 
+    value: 1
+    vectorValue: {x: 0, y: 0, z: 0}
+    values:
+    - 5
+    - 10
+    vectorValues: []
+    customDescription: 
+    targetObject: {fileID: 0}
+  - effectType: 1
+    clickEffectType: 0
+    fieldType: 1
+    trigger: 0
+    specificKey: 0
+    descriptionType: 0
     selectedField: _axis
     methodToInvoke: 
     value: 1
@@ -169,10 +179,14 @@ MonoBehaviour:
     - 10
     vectorValues:
     - {x: 0, y: 1, z: 0}
+    customDescription: 
+    targetObject: {fileID: 0}
   - effectType: 1
+    clickEffectType: 0
     fieldType: 1
-    keyPair: 1
+    trigger: 1
     specificKey: 0
+    descriptionType: 0
     selectedField: _axis
     methodToInvoke: 
     value: 1
@@ -182,3 +196,5 @@ MonoBehaviour:
     - 10
     vectorValues:
     - {x: 1, y: 0, z: 0}
+    customDescription: 
+    targetObject: {fileID: 0}
