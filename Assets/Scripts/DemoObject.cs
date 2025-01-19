@@ -17,6 +17,7 @@ public class DemoObject : MonoBehaviour
     private DemoType _demoType;
     public DemoType Type => _demoType;
 
+    [Tooltip("The name of the specific component that will be actioned on for this demo.")]
     [SerializeField]
     private string _componentName;
     public string ComponentName => _componentName;

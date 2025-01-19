@@ -150,12 +150,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44282690b896b244089893a67e52c923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetObject: {fileID: 8132721774819632862}
+  _targetObject: {fileID: 3092144001679229536}
   _targetPoint: {x: 5, y: 0, z: 0}
   _startingPoint: {x: -5, y: 0, z: 0}
   _controlPointOffset: 5
   _speed: 1
-  _turnInMovementDirection: 0
+  _turnInMovementDirection: 1
   _looping: 1
 --- !u!114 &4295516768544282302
 MonoBehaviour:
