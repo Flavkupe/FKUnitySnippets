@@ -63,10 +63,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\WebInputManager.cs" />
     <Compile Include="Assets\Scripts\DemoInputs.cs" />
+    <Compile Include="Assets\Scripts\PrefabProcessor.cs" />
     <Compile Include="Assets\Scripts\InputOption.cs" />
     <Compile Include="Assets\Scripts\UnityMessage.cs" />
     <Compile Include="Assets\Scripts\DemoObject.cs" />
     <Compile Include="Assets\Scripts\ReflectionHelper.cs" />
+    <Compile Include="Assets\Scripts\Demo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Main.asmdef" />

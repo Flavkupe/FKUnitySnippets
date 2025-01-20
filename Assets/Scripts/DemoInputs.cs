@@ -93,7 +93,7 @@ public class DemoInputs : MonoBehaviour
     private void PerformAction(InputOption inputOption)
     {
         var demoObject = GetComponent<DemoObject>();
-        var target = GetComponent(demoObject.ComponentName) as MonoBehaviour;
+        var target = demoObject.GetDemoComponent() as MonoBehaviour;
         if (target == null)
         {
             return;

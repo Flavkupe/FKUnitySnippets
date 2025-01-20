@@ -4,23 +4,16 @@ using System.Collections.Generic;
 
 public class DemoObject : MonoBehaviour
 {
-    public enum DemoType
-    {
-        GameObject,
-        UI,
-    }
-
     [DllImport("__Internal")]
     private static extern void SendMessageToWeb(string message);
-
-    [SerializeField]
-    private DemoType _demoType;
-    public DemoType Type => _demoType;
 
     [Tooltip("The name of the specific component that will be actioned on for this demo.")]
     [SerializeField]
     private string _componentName;
     public string ComponentName => _componentName;
+
+    [SerializeField]
+    private Component _targetComponent;
 
     private void Start()
     {
@@ -33,6 +26,11 @@ public class DemoObject : MonoBehaviour
     /// <returns></returns>
     public Component GetDemoComponent()
     {
+        if (_targetComponent != null)
+        {
+            return _targetComponent;
+        }
+
         var component = this.GetComponent(_componentName);
         if (component == null)
         {
@@ -45,6 +43,10 @@ public class DemoObject : MonoBehaviour
 
     private void GenerateDescriptionMessage()
     {
+#if !UNITY_WEBGL || UNITY_EDITOR
+        return;
+#endif
+
         var component = GetDemoComponent();
         if (component == null)
         {
