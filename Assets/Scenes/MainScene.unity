@@ -681,7 +681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 463733401}
   _notAvailableText: {fileID: 946545238}
-  _testComponent: 
+  _testComponent: FadingObject
   _nextDemoButton: {fileID: 314771986}
   _previousDemoButton: {fileID: 1703876710}
 --- !u!4 &1640298493

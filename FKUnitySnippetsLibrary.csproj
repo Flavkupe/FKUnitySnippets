@@ -61,13 +61,17 @@
     <Analyzer Include="D:\Unity\Editor\6000.0.29f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Coroutines\Timer\Timer.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Probability\WeightedList\WeightedList.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Text\TMPro\ShakyText\ShakyText.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Probability\WeightedList\WeightedListDemo.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Curves\Bezier\BezierDemo.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\OscillatingObject\OscillatingObject.cs" />
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\FadingObject\FadingObject.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Curves\Bezier\Bezier.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\SpinningObject\SpinningObject.cs" />
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Coroutines\Timer\TimerDemo.cs" />
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\ShiftingObject\ShiftingObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary.asmdef" />
