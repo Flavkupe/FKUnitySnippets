@@ -749,7 +749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01edc23d494ac0546ad12ff0f6178782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _demoName: BezierDemo
+  _demoName: Bezier
   _demos:
   - {fileID: 3097133845145534123}
   _demoType: 0

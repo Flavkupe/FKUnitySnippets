@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01edc23d494ac0546ad12ff0f6178782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _demoName: WeightedListDemo
+  _demoName: WeightedList
   _demos:
   - {fileID: 1492710830604417221}
   _demoType: 1
