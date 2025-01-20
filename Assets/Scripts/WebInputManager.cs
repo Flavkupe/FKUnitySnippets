@@ -32,10 +32,12 @@ public class WebInputManager : MonoBehaviour
     {
         _demos = Resources.LoadAll<Demo>("Prefabs");
 
+#if UNITY_EDITOR
         if (!string.IsNullOrEmpty(_testComponent))
         {
             SwitchDemo(_testComponent);
         }
+#endif
 
         _nextDemoButton.onClick.AddListener(NextPressed);
         _previousDemoButton.onClick.AddListener(PreviousPressed);
