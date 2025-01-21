@@ -65,6 +65,7 @@
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Randomization\PerlinNoiseMap\PerlinNoiseMapDemo.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Text\TMPro\ShakyText\ShakyText.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Coroutines\Runner\CoroutineRunner.cs" />
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Curves\CatmullRomSpline\CatmullRomSpline.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Curves\Bezier\BezierDemo.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\ExtensionFunctions\ExtensionFunctions.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Randomization\WeightedList\WeightedList.cs" />
