@@ -14,6 +14,11 @@ public class InputOption
         SpecificKey,
         MouseClick,
         MouseRightClick,
+
+        /*
+         * Used just for showing a message.
+         */
+        None,
     }
 
     public enum EffectType

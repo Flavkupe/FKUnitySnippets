@@ -72,6 +72,7 @@
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\OscillatingObject\OscillatingObject.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Randomization\PerlinNoiseMap\PerlinNoiseMap.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\FadingObject\FadingObject.cs" />
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Curves\CatmullRomSpline\CatmullRomSplineDemo.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Curves\Bezier\Bezier.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\SpinningObject\SpinningObject.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Randomization\WeightedList\WeightedListDemo.cs" />

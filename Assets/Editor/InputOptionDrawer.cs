@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -35,7 +37,15 @@ public class InputOptionDrawer : PropertyDrawer
         EditorGUI.PropertyField(rect, triggerProp);
         rect.y += LineHeight;
 
-        if ((InputOption.Trigger)triggerProp.enumValueIndex == InputOption.Trigger.SpecificKey)
+        if (PropHasEnumValue(triggerProp, InputOption.Trigger.None))
+        {
+            // special case: only used for custom descriptions
+            SerializedProperty customDescriptionProp = property.FindPropertyRelative("customDescription");
+            EditorGUI.PropertyField(rect, customDescriptionProp);
+            return;
+        }
+
+        if (PropHasEnumValue(triggerProp, InputOption.Trigger.SpecificKey))
         {
             EditorGUI.PropertyField(rect, specificKeyProp);
             rect.y += LineHeight;
@@ -44,15 +54,15 @@ public class InputOptionDrawer : PropertyDrawer
         EditorGUI.PropertyField(rect, descriptionTypeProp);
         rect.y += LineHeight;
 
-        if ((InputOption.DescriptionType)descriptionTypeProp.enumValueIndex == InputOption.DescriptionType.Custom)
+        if (PropHasEnumValue(descriptionTypeProp, InputOption.DescriptionType.Custom))
         {
             SerializedProperty customDescriptionProp = property.FindPropertyRelative("customDescription");
             EditorGUI.PropertyField(rect, customDescriptionProp);
             rect.y += LineHeight;
         }
 
-        if ((InputOption.Trigger)triggerProp.enumValueIndex == InputOption.Trigger.MouseClick ||
-            (InputOption.Trigger)triggerProp.enumValueIndex == InputOption.Trigger.MouseRightClick)
+        if (PropHasEnumValue(triggerProp, InputOption.Trigger.MouseClick) ||
+            PropHasEnumValue(triggerProp, InputOption.Trigger.MouseRightClick))
         {
             EditorGUI.PropertyField(rect, clickEffectTypeProp);
             rect.y += LineHeight;
@@ -75,7 +85,7 @@ public class InputOptionDrawer : PropertyDrawer
     private void DrawMouseEffectFields(Rect rect, SerializedProperty property, DemoObject demoObject, SerializedProperty mouseEffectTypeProp)
     {
         
-        if ((InputOption.ClickEffectType)mouseEffectTypeProp.enumValueIndex == InputOption.ClickEffectType.SetVector3ValueToPointer)
+        if (PropHasEnumValue(mouseEffectTypeProp, InputOption.ClickEffectType.SetVector3ValueToPointer))
         {
             SerializedProperty selectedFieldProp = property.FindPropertyRelative("selectedField");
             DrawSelectedField(rect, demoObject, selectedFieldProp, "Vector3");
@@ -89,7 +99,7 @@ public class InputOptionDrawer : PropertyDrawer
 
     private void DrawKeyboardEffectFields(Rect rect, SerializedProperty property, DemoObject demoObject, SerializedProperty effectTypeProp)
     {
-        if ((InputOption.EffectType)effectTypeProp.enumValueIndex == InputOption.EffectType.CallsMethod)
+        if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.CallsMethod))
         {
             DrawMethodToInvokeField(rect, property, demoObject);
         }
@@ -158,11 +168,11 @@ public class InputOptionDrawer : PropertyDrawer
 
     private void DrawValueFields(Rect rect, SerializedProperty property, SerializedProperty effectTypeProp, SerializedProperty fieldTypeProp)
     {
-        if ((InputOption.FieldType)fieldTypeProp.enumValueIndex == InputOption.FieldType.Float)
+        if (PropHasEnumValue(fieldTypeProp, InputOption.FieldType.Float))
         {
             DrawFloatValueFields(rect, property, effectTypeProp);
         }
-        else if ((InputOption.FieldType)fieldTypeProp.enumValueIndex == InputOption.FieldType.Vector3)
+        else if (PropHasEnumValue(fieldTypeProp, InputOption.FieldType.Vector3))
         {
             DrawVector3ValueFields(rect, property, effectTypeProp);
         }
@@ -170,12 +180,12 @@ public class InputOptionDrawer : PropertyDrawer
 
     private void DrawFloatValueFields(Rect rect, SerializedProperty property, SerializedProperty effectTypeProp)
     {
-        if ((InputOption.EffectType)effectTypeProp.enumValueIndex == InputOption.EffectType.AddValueToField)
+        if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.AddValueToField))
         {
             SerializedProperty valueProp = property.FindPropertyRelative("value");
             EditorGUI.PropertyField(rect, valueProp);
         }
-        else if ((InputOption.EffectType)effectTypeProp.enumValueIndex == InputOption.EffectType.ToggleBetweenValues)
+        else if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.ToggleBetweenValues))
         {
             SerializedProperty valuesProp = property.FindPropertyRelative("values");
             EditorGUI.PropertyField(rect, valuesProp, true);
@@ -185,12 +195,12 @@ public class InputOptionDrawer : PropertyDrawer
     private void DrawVector3ValueFields(Rect rect, SerializedProperty property, SerializedProperty effectTypeProp)
     {
 
-        if ((InputOption.EffectType)effectTypeProp.enumValueIndex == InputOption.EffectType.AddValueToField)
+        if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.AddValueToField))
         {
             SerializedProperty vectorValueProp = property.FindPropertyRelative("vectorValue");
             EditorGUI.PropertyField(rect, vectorValueProp);
         }
-        else if ((InputOption.EffectType)effectTypeProp.enumValueIndex == InputOption.EffectType.ToggleBetweenValues)
+        else if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.ToggleBetweenValues))
         {
             SerializedProperty vectorValuesProp = property.FindPropertyRelative("vectorValues");
             EditorGUI.PropertyField(rect, vectorValuesProp, true);
@@ -201,7 +211,7 @@ public class InputOptionDrawer : PropertyDrawer
     {
         InputOption.FieldType[] displayedOptions;
 
-        if ((InputOption.EffectType)effectTypeProp.enumValueIndex == InputOption.EffectType.ToggleBetweenValues)
+        if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.ToggleBetweenValues))
         {
             displayedOptions = new InputOption.FieldType[] { InputOption.FieldType.Float, InputOption.FieldType.Vector3, InputOption.FieldType.Bool };
         }
@@ -218,28 +228,38 @@ public class InputOptionDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
+        SerializedProperty triggerProp = property.FindPropertyRelative("trigger");
         SerializedProperty effectTypeProp = property.FindPropertyRelative("effectType");
         SerializedProperty fieldTypeProp = property.FindPropertyRelative("fieldType");
         SerializedProperty descriptionTypeProp = property.FindPropertyRelative("descriptionType");
 
+        if (PropHasEnumValue(triggerProp, InputOption.Trigger.None)) {
+            return EditorGUIUtility.singleLineHeight * 4 + 4;
+        }
+
         float height = EditorGUIUtility.singleLineHeight * 8 + 14;
 
-        if ((InputOption.FieldType)fieldTypeProp.enumValueIndex == InputOption.FieldType.Float &&
-            (InputOption.EffectType)effectTypeProp.enumValueIndex == InputOption.EffectType.ToggleBetweenValues)
+        if (PropHasEnumValue(fieldTypeProp, InputOption.FieldType.Float) &&
+            PropHasEnumValue(effectTypeProp, InputOption.EffectType.ToggleBetweenValues))
         {
             height += EditorGUI.GetPropertyHeight(property.FindPropertyRelative("values"), true);
         }
-        else if ((InputOption.FieldType)fieldTypeProp.enumValueIndex == InputOption.FieldType.Vector3 &&
-                 (InputOption.EffectType)effectTypeProp.enumValueIndex == InputOption.EffectType.ToggleBetweenValues)
+        else if (PropHasEnumValue(fieldTypeProp, InputOption.FieldType.Vector3) &&
+                 PropHasEnumValue(effectTypeProp, InputOption.EffectType.ToggleBetweenValues))
         {
             height += EditorGUI.GetPropertyHeight(property.FindPropertyRelative("vectorValues"), true);
         }
 
-        if ((InputOption.DescriptionType)descriptionTypeProp.enumValueIndex == InputOption.DescriptionType.Custom)
+        if (PropHasEnumValue(descriptionTypeProp, InputOption.DescriptionType.Custom))
         {
             height += EditorGUIUtility.singleLineHeight + 2;
         }
 
         return height;
+    }
+
+    private bool PropHasEnumValue<T>(SerializedProperty prop, T value) where T : struct, Enum
+    {
+        return Enum.ToObject(typeof(T), prop.enumValueIndex).Equals(value);
     }
 }
