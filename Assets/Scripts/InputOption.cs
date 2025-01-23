@@ -6,24 +6,30 @@ public class InputOption
 {
     public enum Trigger
     {
-        UpDown,
-        LeftRight,
-        QW,
-        AS,
-        ZX,
-        SpecificKey,
+        /// <summary>
+        /// Console-like controls, appearing on the DOM.
+        /// </summary>
+        Default,
+
+        /// <summary>
+        /// Allows control of the demo by clicking on the WebGL embed.
+        /// </summary>
         MouseClick,
+
+        /// <summary>
+        /// Allows control of the demo by right-clicking on the WebGL embed.
+        /// </summary>
         MouseRightClick,
 
-        /*
-         * Used just for showing a message.
-         */
+        /// <summary>
+        /// Used for just showing the description.
+        /// </summary>
         None,
     }
 
     public enum EffectType
     {
-        AddValueToField,
+        ChangeFieldValue,
         ToggleBetweenValues,
         CallsMethod,
     }
@@ -56,8 +62,6 @@ public class InputOption
 
     public Trigger trigger;
 
-    public KeyCode specificKey;
-
     public DescriptionType descriptionType = DescriptionType.Default;
 
     public string selectedField;
@@ -78,6 +82,82 @@ public class InputOption
 
     public bool IsMouseTrigger => trigger == Trigger.MouseClick || trigger == Trigger.MouseRightClick;
 
+    public AbstractInputControl ToWebMessageInputControl(MonoBehaviour target)
+    {
+        var description = GetDescription();
+
+        if (trigger != Trigger.Default)
+        {
+            if (string.IsNullOrEmpty(description))
+            {
+                // don't even need to return this one, as it serves no purpose
+                // on the web controls
+                return null;
+            }
+
+            return new InfoInputControl
+            {
+                description = description,
+            };
+        }
+
+        switch (effectType)
+        {
+            case EffectType.ChangeFieldValue:
+                return CreateAddValueInputControl(target, description);
+            case EffectType.ToggleBetweenValues:
+                // TODO: add support for this!
+                return null;
+            case EffectType.CallsMethod:
+                return new ButtonInputControl
+                {
+                    description = description,
+                    method = methodToInvoke,
+                    buttonName = methodToInvoke,
+                };
+            default:
+                return null;
+        }
+    }
+
+    private AbstractFieldInputControl CreateAddValueInputControl(MonoBehaviour target, string description)
+    {
+        if (fieldType == FieldType.Float)
+        {
+            var fieldValue = ReflectionHelper.GetFloatFieldValue(target, selectedField);
+            return new FloatInputControl
+            {
+                description = description,
+                value = fieldValue,
+                incrementValue = value,
+                fieldName = selectedField,
+            };
+        }
+        else if (fieldType == FieldType.Vector3)
+        {
+            var fieldValue = ReflectionHelper.GetVector3FieldValue(target, selectedField);
+            return new Vector3InputControl
+            {
+                description = description,
+                value = fieldValue,
+                incrementValue = value,
+                fieldName = selectedField,
+            };
+        }
+        else if (fieldType == FieldType.Bool)
+        {
+            var fieldValue = ReflectionHelper.GetBoolFieldValue(target, selectedField);
+            return new BoolInputControl
+            {
+                description = description,
+                value = fieldValue,
+                fieldName = selectedField,
+            };
+        }
+
+        return null;
+    }
+
     public string GetDescription()
     {
         if (descriptionType == DescriptionType.Custom)
@@ -97,8 +177,8 @@ public class InputOption
         }
         else
         {
-            return GetKeypressDescription();
-        }   
+            return "Use the controls to change the values";
+        }
     }
 
     private string GetMouseClickDescription()
@@ -117,33 +197,5 @@ public class InputOption
 
             return $"{command} click to move {targetObject.name}";
         }
-    }
-
-    private string GetKeypressDescription()
-    {
-        string keyDescription = trigger switch
-        {
-            Trigger.UpDown => "Up/Down",
-            Trigger.LeftRight => "Left/Right",
-            Trigger.QW => "Q/W",
-            Trigger.AS => "A/S",
-            Trigger.ZX => "Z/X",
-            Trigger.SpecificKey => specificKey.ToString(),
-            _ => null
-        };
-
-        string effectDescription = effectType switch
-        {
-            EffectType.AddValueToField => "Increase/Decrease value",
-            EffectType.ToggleBetweenValues => "Switch between values",
-            _ => null
-        };
-
-        if (keyDescription == null || effectDescription == null)
-        {
-            return null;
-        }
-
-        return $"Press {keyDescription}: {effectDescription} of {selectedField}";
     }
 }

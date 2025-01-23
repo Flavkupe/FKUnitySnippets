@@ -238,7 +238,6 @@ MonoBehaviour:
     clickEffectType: 0
     fieldType: 0
     trigger: 0
-    specificKey: 0
     descriptionType: 0
     selectedField: _angleMultiplier
     methodToInvoke: 
@@ -251,8 +250,7 @@ MonoBehaviour:
   - effectType: 0
     clickEffectType: 0
     fieldType: 0
-    trigger: 1
-    specificKey: 0
+    trigger: 0
     descriptionType: 0
     selectedField: _curveScale
     methodToInvoke: 

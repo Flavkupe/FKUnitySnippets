@@ -23,6 +23,8 @@ public class Demo : MonoBehaviour
 
     private int _currentDemoIndex;
 
+    public DemoObject CurrentDemo => _demos[_currentDemoIndex];
+
     public bool HasNextDemo => _demos != null && _currentDemoIndex < _demos.Length - 1;
     public bool HasPreviousDemo => _demos != null && _currentDemoIndex > 0;
 

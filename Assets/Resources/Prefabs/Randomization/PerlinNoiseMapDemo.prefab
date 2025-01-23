@@ -88,8 +88,7 @@ MonoBehaviour:
   - effectType: 0
     clickEffectType: 0
     fieldType: 0
-    trigger: 2
-    specificKey: 0
+    trigger: 0
     descriptionType: 0
     selectedField: _scale
     methodToInvoke: 
@@ -99,43 +98,14 @@ MonoBehaviour:
     vectorValues: []
     customDescription: 
     targetObject: {fileID: 0}
-  - effectType: 2
-    clickEffectType: 0
-    fieldType: 0
-    trigger: 2
-    specificKey: 0
-    descriptionType: 1
-    selectedField: _scale
-    methodToInvoke: Generate
-    value: 5
-    vectorValue: {x: 0, y: 0, z: 0}
-    values: []
-    vectorValues: []
-    customDescription: 
-    targetObject: {fileID: 0}
   - effectType: 0
     clickEffectType: 0
     fieldType: 0
     trigger: 0
-    specificKey: 0
     descriptionType: 0
-    selectedField: _offsetY
+    selectedField: _threshold
     methodToInvoke: Generate
-    value: 5
-    vectorValue: {x: 0, y: 0, z: 0}
-    values: []
-    vectorValues: []
-    customDescription: 
-    targetObject: {fileID: 0}
-  - effectType: 2
-    clickEffectType: 0
-    fieldType: 0
-    trigger: 0
-    specificKey: 0
-    descriptionType: 1
-    selectedField: _offsetY
-    methodToInvoke: Generate
-    value: 5
+    value: 0.1
     vectorValue: {x: 0, y: 0, z: 0}
     values: []
     vectorValues: []
@@ -144,26 +114,11 @@ MonoBehaviour:
   - effectType: 0
     clickEffectType: 0
     fieldType: 0
-    trigger: 1
-    specificKey: 0
+    trigger: 0
     descriptionType: 0
     selectedField: _offsetX
     methodToInvoke: Generate
-    value: 5
-    vectorValue: {x: 0, y: 0, z: 0}
-    values: []
-    vectorValues: []
-    customDescription: 
-    targetObject: {fileID: 0}
-  - effectType: 2
-    clickEffectType: 0
-    fieldType: 0
-    trigger: 1
-    specificKey: 0
-    descriptionType: 1
-    selectedField: _offsetY
-    methodToInvoke: Generate
-    value: 5
+    value: 1
     vectorValue: {x: 0, y: 0, z: 0}
     values: []
     vectorValues: []
@@ -172,26 +127,11 @@ MonoBehaviour:
   - effectType: 0
     clickEffectType: 0
     fieldType: 0
-    trigger: 3
-    specificKey: 0
+    trigger: 0
     descriptionType: 0
-    selectedField: _threshold
+    selectedField: _offsetY
     methodToInvoke: Generate
-    value: 0.1
-    vectorValue: {x: 0, y: 0, z: 0}
-    values: []
-    vectorValues: []
-    customDescription: 
-    targetObject: {fileID: 0}
-  - effectType: 2
-    clickEffectType: 0
-    fieldType: 0
-    trigger: 3
-    specificKey: 0
-    descriptionType: 1
-    selectedField: _threshold
-    methodToInvoke: Generate
-    value: 0.1
+    value: 1
     vectorValue: {x: 0, y: 0, z: 0}
     values: []
     vectorValues: []

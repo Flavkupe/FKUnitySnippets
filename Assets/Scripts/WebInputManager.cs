@@ -53,6 +53,54 @@ public class WebInputManager : MonoBehaviour
 #endif
     }
 
+    private DemoInputs GetCurrentDemoInputs()
+    {
+        return _currentDemo.CurrentDemo?.GetComponent<DemoInputs>();
+    }
+
+    public void SetFloatValue(string jsonMessage)
+    {
+        var message = JsonUtility.FromJson<SetFloatValueMessage>(jsonMessage);
+        SetFieldValue(message);
+    }
+
+    public void SetBoolValue(string jsonMessage)
+    {
+        var message = JsonUtility.FromJson<SetBoolValueMessage>(jsonMessage);
+        SetFieldValue(message);
+    }
+
+    public void SetVector3Value(string jsonMessage)
+    {
+        var message = JsonUtility.FromJson<SetVector3ValueMessage>(jsonMessage);
+        SetFieldValue(message);
+    }
+
+    public void InvokeMethod(string jsonMessage)
+    {
+        var message = JsonUtility.FromJson<InvokeMethodMessage>(jsonMessage);
+        var inputs = GetCurrentDemoInputs();
+        if (inputs == null)
+        {
+            Debug.LogWarning("No inputs found!");
+            return;
+        }
+
+        inputs.InvokeMethodOnTarget(message.MethodName);
+    }
+
+    private void SetFieldValue(SetValueMessage message)
+    {
+        var inputs = GetCurrentDemoInputs();
+        if (inputs == null)
+        {
+            Debug.LogWarning("No inputs found!");
+            return;
+        }
+
+        inputs.SetFieldValue(message);
+    }
+
     public void SwitchDemo(string demoName)
     {
         _notAvailableText.SetActive(false);

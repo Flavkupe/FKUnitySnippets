@@ -390,11 +390,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputOptions:
+  - effectType: 0
+    clickEffectType: 0
+    fieldType: 0
+    trigger: 0
+    descriptionType: 0
+    selectedField: _speed
+    methodToInvoke: Reverse
+    value: 0.2
+    vectorValue: {x: 0, y: 0, z: 0}
+    values: []
+    vectorValues: []
+    customDescription: 
+    targetObject: {fileID: 0}
+  - effectType: 0
+    clickEffectType: 0
+    fieldType: 0
+    trigger: 0
+    descriptionType: 0
+    selectedField: _controlPointOffset
+    methodToInvoke: Reverse
+    value: 1
+    vectorValue: {x: 0, y: 0, z: 0}
+    values: []
+    vectorValues: []
+    customDescription: 
+    targetObject: {fileID: 0}
+  - effectType: 0
+    clickEffectType: 1
+    fieldType: 2
+    trigger: 0
+    descriptionType: 0
+    selectedField: _looping
+    methodToInvoke: Reverse
+    value: 1
+    vectorValue: {x: 0, y: 0, z: 0}
+    values: []
+    vectorValues: []
+    customDescription: 
+    targetObject: {fileID: 1990841260007027263}
+  - effectType: 0
+    clickEffectType: 0
+    fieldType: 2
+    trigger: 0
+    descriptionType: 0
+    selectedField: _turnInMovementDirection
+    methodToInvoke: Reverse
+    value: 1
+    vectorValue: {x: 0, y: 0, z: 0}
+    values: []
+    vectorValues: []
+    customDescription: 
+    targetObject: {fileID: 0}
   - effectType: 2
     clickEffectType: 0
     fieldType: 1
-    trigger: 5
-    specificKey: 113
+    trigger: 0
     descriptionType: 0
     selectedField: _targetPoint
     methodToInvoke: Reverse
@@ -407,24 +458,9 @@ MonoBehaviour:
   - effectType: 0
     clickEffectType: 0
     fieldType: 0
-    trigger: 0
-    specificKey: 113
-    descriptionType: 0
-    selectedField: _controlPointOffset
-    methodToInvoke: Reverse
-    value: 0.5
-    vectorValue: {x: 0, y: 0, z: 0}
-    values: []
-    vectorValues: []
-    customDescription: 
-    targetObject: {fileID: 0}
-  - effectType: 0
-    clickEffectType: 0
-    fieldType: 0
     trigger: 1
-    specificKey: 113
     descriptionType: 0
-    selectedField: _speed
+    selectedField: _startingPoint
     methodToInvoke: Reverse
     value: 0.2
     vectorValue: {x: 0, y: 0, z: 0}
@@ -432,85 +468,40 @@ MonoBehaviour:
     vectorValues: []
     customDescription: 
     targetObject: {fileID: 0}
-  - effectType: 1
-    clickEffectType: 0
-    fieldType: 2
-    trigger: 5
-    specificKey: 115
-    descriptionType: 0
-    selectedField: _turnInMovementDirection
-    methodToInvoke: Reverse
-    value: 1
-    vectorValue: {x: 0, y: 0, z: 0}
-    values: []
-    vectorValues: []
-    customDescription: 
-    targetObject: {fileID: 0}
-  - effectType: 1
+  - effectType: 0
     clickEffectType: 1
-    fieldType: 2
-    trigger: 5
-    specificKey: 97
-    descriptionType: 0
-    selectedField: _looping
-    methodToInvoke: Reverse
-    value: 1
-    vectorValue: {x: 0, y: 0, z: 0}
-    values: []
-    vectorValues: []
-    customDescription: 
-    targetObject: {fileID: 1990841260007027263}
-  - effectType: 1
-    clickEffectType: 0
-    fieldType: 2
-    trigger: 6
-    specificKey: 115
-    descriptionType: 0
-    selectedField: _startingPoint
-    methodToInvoke: Reverse
-    value: 1
-    vectorValue: {x: 0, y: 0, z: 0}
-    values: []
-    vectorValues: []
-    customDescription: 
-    targetObject: {fileID: 0}
-  - effectType: 1
-    clickEffectType: 0
-    fieldType: 2
-    trigger: 7
-    specificKey: 115
-    descriptionType: 0
-    selectedField: _targetPoint
-    methodToInvoke: Reverse
-    value: 1
-    vectorValue: {x: 0, y: 0, z: 0}
-    values: []
-    vectorValues: []
-    customDescription: 
-    targetObject: {fileID: 8769460741615948735}
-  - effectType: 1
-    clickEffectType: 1
-    fieldType: 2
-    trigger: 6
-    specificKey: 115
+    fieldType: 0
+    trigger: 1
     descriptionType: 1
     selectedField: _targetPoint
     methodToInvoke: Reverse
-    value: 1
+    value: 0.2
     vectorValue: {x: 0, y: 0, z: 0}
     values: []
     vectorValues: []
     customDescription: 
     targetObject: {fileID: 4552111977719395867}
-  - effectType: 1
+  - effectType: 0
+    clickEffectType: 0
+    fieldType: 0
+    trigger: 2
+    descriptionType: 0
+    selectedField: _targetPoint
+    methodToInvoke: Reverse
+    value: 0.2
+    vectorValue: {x: 0, y: 0, z: 0}
+    values: []
+    vectorValues: []
+    customDescription: 
+    targetObject: {fileID: 4552111977719395867}
+  - effectType: 0
     clickEffectType: 1
-    fieldType: 2
-    trigger: 7
-    specificKey: 115
+    fieldType: 0
+    trigger: 2
     descriptionType: 1
     selectedField: _targetPoint
     methodToInvoke: Reverse
-    value: 1
+    value: 0.2
     vectorValue: {x: 0, y: 0, z: 0}
     values: []
     vectorValues: []

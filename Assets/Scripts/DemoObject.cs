@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 public class DemoObject : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class DemoObject : MonoBehaviour
 
     private void Start()
     {
-        GenerateDescriptionMessage();
+        GenerateDemoInfoMessage();
     }
 
     /// <summary>
@@ -41,12 +42,8 @@ public class DemoObject : MonoBehaviour
         return component;
     }
 
-    private void GenerateDescriptionMessage()
+    private void GenerateDemoInfoMessage()
     {
-#if !UNITY_WEBGL || UNITY_EDITOR
-        return;
-#endif
-
         var component = GetDemoComponent();
         if (component == null)
         {
@@ -55,22 +52,30 @@ public class DemoObject : MonoBehaviour
 
         var unityMessage = new UnityMessage();
 
-        
-        var controls = new List<string>();
-        if (component is MonoBehaviour && ReflectionHelper.HasResetStateMethod(component))
-        {
-            var resetMessage = "Space: Reset";
-            controls.Add(resetMessage);
-        }
-
+        var controls = new List<AbstractInputControl>();
         var inputs = GetComponent<DemoInputs>();
         if (inputs != null)
         {
-            controls.AddRange(inputs.GetDescriptions());
+            controls.AddRange(inputs.GetControls());
         }
 
-        unityMessage.controls = controls.ToArray();
-        var jsonMessage = JsonUtility.ToJson(unityMessage);
+        if (component is MonoBehaviour && ReflectionHelper.HasResetStateMethod(component))
+        {
+            controls.Add(new ButtonInputControl()
+            {
+                description = "Space: Reset",
+                method = "ResetState",
+                buttonName = "Reset",
+            });
+        }
+
+        unityMessage.inputControls = controls.ToArray();
+        var jsonMessage = JsonConvert.SerializeObject(unityMessage);
+
+#if UNITY_WEBGL && !UNITY_EDITOR
         SendMessageToWeb(jsonMessage);
+# elif UNITY_EDITOR
+        Debug.Log(jsonMessage);
+#endif
     }
 }

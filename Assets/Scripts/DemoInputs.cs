@@ -9,19 +9,20 @@ public class DemoInputs : MonoBehaviour
     [SerializeField]
     private InputOption[] _inputOptions;
 
-    public List<string> GetDescriptions()
+    public List<AbstractInputControl> GetControls()
     {
-        var descriptions = new List<string>();
+        var target = Target;
+        var controls = new List<AbstractInputControl>();
         foreach (var option in _inputOptions)
         {
-            var description = option.GetDescription();
-            if (!string.IsNullOrWhiteSpace(description))
+            var control = option.ToWebMessageInputControl(target);
+            if (control != null)
             {
-                descriptions.Add(description);
+                controls.Add(control);
             }
         }
 
-        return descriptions;
+        return controls;
     }
 
     private void Update()
@@ -33,35 +34,6 @@ public class DemoInputs : MonoBehaviour
                 PerformAction(inputOption);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            var demoObject = GetComponent<DemoObject>();
-            var demoComponent = demoObject.GetDemoComponent() as MonoBehaviour;
-            if (demoComponent != null && ReflectionHelper.HasResetStateMethod(demoComponent))
-            {
-                demoComponent.Invoke("ResetState", 0f);
-            }
-        }
-    }
-
-    private bool IsInverseKey(InputOption.Trigger keyPair)
-    {
-        switch (keyPair)
-        {
-            case InputOption.Trigger.UpDown:
-                return Input.GetKeyDown(KeyCode.DownArrow);
-            case InputOption.Trigger.LeftRight:
-                return Input.GetKeyDown(KeyCode.LeftArrow);
-            case InputOption.Trigger.QW:
-                return Input.GetKeyDown(KeyCode.Q);
-            case InputOption.Trigger.AS:
-                return Input.GetKeyDown(KeyCode.A);
-            case InputOption.Trigger.ZX:
-                return Input.GetKeyDown(KeyCode.Z);
-            default:
-                return false;
-        }
     }
 
     private bool IsTriggerActivated(InputOption inputOption)
@@ -69,18 +41,6 @@ public class DemoInputs : MonoBehaviour
         var trigger = inputOption.trigger;
         switch (trigger)
         {
-            case InputOption.Trigger.UpDown:
-                return Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow);
-            case InputOption.Trigger.LeftRight:
-                return Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow);
-            case InputOption.Trigger.QW:
-                return Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.W);
-            case InputOption.Trigger.AS:
-                return Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S);
-            case InputOption.Trigger.ZX:
-                return Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.X);
-            case InputOption.Trigger.SpecificKey:
-                return Input.GetKeyDown(inputOption.specificKey);
             case InputOption.Trigger.MouseClick:
                 return Input.GetMouseButtonDown(0);
             case InputOption.Trigger.MouseRightClick:
@@ -90,16 +50,28 @@ public class DemoInputs : MonoBehaviour
         }
     }
 
+    private MonoBehaviour Target => GetComponent<DemoObject>()?.GetDemoComponent() as MonoBehaviour;
+
+    private FieldInfo GetField(string fieldName)
+    {
+        var target = Target;
+        if (target == null)
+        {
+            return null;
+        }
+
+        return ReflectionHelper.GetField(target, fieldName);
+    }
+
     private void PerformAction(InputOption inputOption)
     {
-        var demoObject = GetComponent<DemoObject>();
-        var target = demoObject.GetDemoComponent() as MonoBehaviour;
+        var target = Target;
         if (target == null)
         {
             return;
         }
 
-        var field = target.GetType().GetField(inputOption.selectedField, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        var field = GetField(inputOption.selectedField);
         if (field == null)
         {
             return;
@@ -108,10 +80,6 @@ public class DemoInputs : MonoBehaviour
         if (inputOption.IsMouseTrigger)
         {
             PerformMouseActions(inputOption, target, field);
-        }
-        else
-        {
-            PerformKeyboardActions(inputOption, target, field);
         }
     }
 
@@ -133,55 +101,26 @@ public class DemoInputs : MonoBehaviour
         }
     }
 
-    private void PerformKeyboardActions(InputOption inputOption, MonoBehaviour target, FieldInfo field)
+    public void SetFieldValue(SetValueMessage message)
     {
-        var inverse = IsInverseKey(inputOption.trigger);
-        switch (inputOption.effectType)
+        var field = GetField(message.FieldName);
+        if (field == null)
         {
-            case InputOption.EffectType.AddValueToField:
-                if (inputOption.fieldType == InputOption.FieldType.Float)
-                {
-                    float currentValue = (float)field.GetValue(target);
-                    var value = inverse ? -inputOption.value : inputOption.value;
-                    field.SetValue(target, currentValue + value);
-                }
-                else if (inputOption.fieldType == InputOption.FieldType.Vector3)
-                {
-                    Vector3 currentValue = (Vector3)field.GetValue(target);
-                    var value = inverse ? -inputOption.vectorValue : inputOption.vectorValue;
-                    field.SetValue(target, currentValue + value);
-                }
-                break;
-
-            case InputOption.EffectType.ToggleBetweenValues:
-                if (inputOption.fieldType == InputOption.FieldType.Float)
-                {
-                    float currentValue = (float)field.GetValue(target);
-                    int index = Array.IndexOf(inputOption.values, currentValue);
-                    index = (index + 1) % inputOption.values.Length;
-                    field.SetValue(target, inputOption.values[index]);
-                }
-                else if (inputOption.fieldType == InputOption.FieldType.Vector3)
-                {
-                    Vector3 currentValue = (Vector3)field.GetValue(target);
-                    int index = Array.IndexOf(inputOption.vectorValues, currentValue);
-                    index = (index + 1) % inputOption.vectorValues.Length;
-                    field.SetValue(target, inputOption.vectorValues[index]);
-                }
-                else if (inputOption.fieldType == InputOption.FieldType.Bool)
-                {
-                    bool currentValue = (bool)field.GetValue(target);
-                    field.SetValue(target, !currentValue);
-                }
-
-                break;
-
-            case InputOption.EffectType.CallsMethod:
-                if (inputOption.methodToInvoke != null)
-                {
-                    target.Invoke(inputOption.methodToInvoke, 0.0f);
-                }
-                break;
+            return;
         }
+
+        field.SetValue(Target, message.FieldValue);
     }
+
+    public void InvokeMethodOnTarget(string methodName)
+    {
+        var target = Target;
+        if (target == null)
+        {
+            return;
+        }
+
+        target.Invoke(methodName, 0);
+    }
+
 }

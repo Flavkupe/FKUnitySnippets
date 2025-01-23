@@ -895,12 +895,11 @@ MonoBehaviour:
   - effectType: 0
     clickEffectType: 0
     fieldType: 0
-    trigger: 8
-    specificKey: 0
+    trigger: 0
     descriptionType: 0
-    selectedField: 
+    selectedField: _speed
     methodToInvoke: 
-    value: 0
+    value: 0.2
     vectorValue: {x: 0, y: 0, z: 0}
     values: []
     vectorValues: []

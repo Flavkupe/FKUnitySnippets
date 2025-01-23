@@ -11,6 +11,48 @@ public static class ReflectionHelper
         return HasMethodByName(component, "ResetState");
     }
 
+    public static FieldInfo GetField(MonoBehaviour target, string fieldName)
+    {
+        return target.GetType().GetField(fieldName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+    }
+
+    public static float GetFloatFieldValue(MonoBehaviour target, string fieldName)
+    {
+        FieldInfo field = GetField(target, fieldName);
+        if (field == null)
+        {
+            Debug.LogError($"Field {fieldName} not found.");
+            return 0f;
+        }
+
+        return (float)field.GetValue(target);
+    }
+
+    public static bool GetBoolFieldValue(MonoBehaviour target, string fieldName)
+    {
+        FieldInfo field = GetField(target, fieldName);
+        if (field == null)
+        {
+            Debug.LogError($"Field {fieldName} not found.");
+            return false;
+        }
+
+        return (bool)field.GetValue(target);
+    }
+
+    public static Vector3 GetVector3FieldValue(MonoBehaviour target, string fieldName)
+    {
+        FieldInfo field = GetField(target, fieldName);
+        if (field == null)
+        {
+            Debug.LogError($"Field {fieldName} not found.");
+            return Vector3.zero;
+        }
+
+        return (Vector3)field.GetValue(target);
+    }
+
+
     private static bool HasMethodByName(Component component, string methodName)
     {
         Type type = component.GetType();

@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\WebInputManager.cs" />
     <Compile Include="Assets\Scripts\DemoInputs.cs" />
+    <Compile Include="Assets\Scripts\OutgoingMessage.cs" />
+    <Compile Include="Assets\Scripts\IncomingMessage.cs" />
     <Compile Include="Assets\Scripts\InputOption.cs" />
     <Compile Include="Assets\Scripts\UnityMessage.cs" />
     <Compile Include="Assets\Scripts\DemoObject.cs" />
@@ -359,6 +361,10 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json\Runtime\AOT\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">

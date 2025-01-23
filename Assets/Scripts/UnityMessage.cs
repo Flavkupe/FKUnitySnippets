@@ -1,16 +1,17 @@
+using System;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class UnityMessage
 {
     [SerializeField]
     public string type = "UNITY_MESSAGE";
 
     [SerializeField]
-    public string[] controls;
+    public AbstractInputControl[] inputControls;
 }
 
-[System.Serializable]
+[Serializable]
 public class WebGLReadyMessage
 {
     [SerializeField]

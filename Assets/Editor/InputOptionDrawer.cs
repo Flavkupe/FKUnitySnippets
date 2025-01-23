@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -27,7 +26,6 @@ public class InputOptionDrawer : PropertyDrawer
         }
 
         SerializedProperty triggerProp = property.FindPropertyRelative("trigger");
-        SerializedProperty specificKeyProp = property.FindPropertyRelative("specificKey");
         SerializedProperty effectTypeProp = property.FindPropertyRelative("effectType");
         SerializedProperty clickEffectTypeProp = property.FindPropertyRelative("clickEffectType");
         SerializedProperty descriptionTypeProp = property.FindPropertyRelative("descriptionType");
@@ -43,12 +41,6 @@ public class InputOptionDrawer : PropertyDrawer
             SerializedProperty customDescriptionProp = property.FindPropertyRelative("customDescription");
             EditorGUI.PropertyField(rect, customDescriptionProp);
             return;
-        }
-
-        if (PropHasEnumValue(triggerProp, InputOption.Trigger.SpecificKey))
-        {
-            EditorGUI.PropertyField(rect, specificKeyProp);
-            rect.y += LineHeight;
         }
 
         EditorGUI.PropertyField(rect, descriptionTypeProp);
@@ -72,7 +64,7 @@ public class InputOptionDrawer : PropertyDrawer
         {
             EditorGUI.PropertyField(rect, effectTypeProp);
             rect.y += LineHeight;
-            DrawKeyboardEffectFields(rect, property, demoObject, effectTypeProp);
+            DrawControlFields(rect, property, demoObject, effectTypeProp);
         }
 
         rect.y += LineHeight;
@@ -97,7 +89,7 @@ public class InputOptionDrawer : PropertyDrawer
         }
     }
 
-    private void DrawKeyboardEffectFields(Rect rect, SerializedProperty property, DemoObject demoObject, SerializedProperty effectTypeProp)
+    private void DrawControlFields(Rect rect, SerializedProperty property, DemoObject demoObject, SerializedProperty effectTypeProp)
     {
         if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.CallsMethod))
         {
@@ -180,7 +172,7 @@ public class InputOptionDrawer : PropertyDrawer
 
     private void DrawFloatValueFields(Rect rect, SerializedProperty property, SerializedProperty effectTypeProp)
     {
-        if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.AddValueToField))
+        if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.ChangeFieldValue))
         {
             SerializedProperty valueProp = property.FindPropertyRelative("value");
             EditorGUI.PropertyField(rect, valueProp);
@@ -195,10 +187,11 @@ public class InputOptionDrawer : PropertyDrawer
     private void DrawVector3ValueFields(Rect rect, SerializedProperty property, SerializedProperty effectTypeProp)
     {
 
-        if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.AddValueToField))
+        if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.ChangeFieldValue))
         {
-            SerializedProperty vectorValueProp = property.FindPropertyRelative("vectorValue");
-            EditorGUI.PropertyField(rect, vectorValueProp);
+            // this is the increment to change values by
+            SerializedProperty valueProp = property.FindPropertyRelative("value");
+            EditorGUI.PropertyField(rect, valueProp);
         }
         else if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.ToggleBetweenValues))
         {
@@ -217,7 +210,7 @@ public class InputOptionDrawer : PropertyDrawer
         }
         else
         {
-            displayedOptions = new InputOption.FieldType[] { InputOption.FieldType.Float, InputOption.FieldType.Vector3 };
+            displayedOptions = new InputOption.FieldType[] { InputOption.FieldType.Float, InputOption.FieldType.Vector3, InputOption.FieldType.Bool };
         }
 
         int selectedIndex = Mathf.Max(0, System.Array.IndexOf(displayedOptions, (InputOption.FieldType)fieldTypeProp.enumValueIndex));
