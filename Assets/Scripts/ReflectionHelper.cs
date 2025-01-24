@@ -66,8 +66,6 @@ public static class ReflectionHelper
         return false;
     }
 
-
-
     public static List<string> GetSerializedFieldNames(DemoObject demoObject, string fieldType)
     {
         var component = demoObject.GetDemoComponent();

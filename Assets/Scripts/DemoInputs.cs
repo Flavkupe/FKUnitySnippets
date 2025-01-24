@@ -7,6 +7,9 @@ using System.Collections.Generic;
 public class DemoInputs : MonoBehaviour
 {
     [SerializeField]
+    private bool _resetOnChanges = false;
+
+    [SerializeField]
     private InputOption[] _inputOptions;
 
     public List<AbstractInputControl> GetControls()
@@ -110,6 +113,11 @@ public class DemoInputs : MonoBehaviour
         }
 
         field.SetValue(Target, message.FieldValue);
+
+        if (_resetOnChanges && ReflectionHelper.HasResetStateMethod(Target))
+        {
+            InvokeMethodOnTarget("ResetState");
+        }
     }
 
     public void InvokeMethodOnTarget(string methodName)

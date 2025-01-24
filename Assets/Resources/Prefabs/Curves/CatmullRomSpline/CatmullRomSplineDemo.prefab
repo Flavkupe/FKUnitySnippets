@@ -891,11 +891,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d385fdece80deb40b1173dc2ca9aaa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _resetOnChanges: 0
   _inputOptions:
   - effectType: 0
     clickEffectType: 0
     fieldType: 0
     trigger: 0
+    descriptionType: 0
+    selectedField: _speed
+    methodToInvoke: 
+    value: 0.2
+    vectorValue: {x: 0, y: 0, z: 0}
+    values: []
+    vectorValues: []
+    customDescription: Left click to add a point.
+    targetObject: {fileID: 0}
+  - effectType: 0
+    clickEffectType: 0
+    fieldType: 0
+    trigger: 3
     descriptionType: 0
     selectedField: _speed
     methodToInvoke: 

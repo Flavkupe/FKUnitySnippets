@@ -104,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1
   _magnitude: 1
+  _useCos: 0
   _axis: {x: 0, y: 1, z: 0}
 --- !u!114 &5129574417568068991
 MonoBehaviour:
@@ -131,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d385fdece80deb40b1173dc2ca9aaa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _resetOnChanges: 0
   _inputOptions:
   - effectType: 0
     clickEffectType: 0
@@ -168,6 +170,22 @@ MonoBehaviour:
     trigger: 0
     descriptionType: 0
     selectedField: _axis
+    methodToInvoke: 
+    value: 1
+    vectorValue: {x: 0, y: 0, z: 0}
+    values:
+    - 5
+    - 10
+    vectorValues:
+    - {x: 0, y: 1, z: 0}
+    customDescription: 
+    targetObject: {fileID: 0}
+  - effectType: 0
+    clickEffectType: 0
+    fieldType: 2
+    trigger: 0
+    descriptionType: 0
+    selectedField: _useCos
     methodToInvoke: 
     value: 1
     vectorValue: {x: 0, y: 0, z: 0}
