@@ -8,11 +8,12 @@
     "typescript": "^5.7.3"
   },
   "scripts": {
-    "deploy-app": "gh-pages -d build",
+    "deploy-webgl": "DeployWebGL.bat",
     "deploy-web": "cd FKUnitySnippetsWeb && npm run deploy",
-    "deploy-all": "npm run deploy-app && npm run deploy-web",
+    "deploy-all": "npm run deploy-webgl && npm run deploy-web",
     "sync-submodules": "git submodule foreach git pull origin main && git add . && git commit -m \"Update submodules to the latest versions\"",
     "update-pages": "cd FKUnitySnippetsWeb && npm run update-pages",
+    "start-web": "cd FKUnitySnippetsWeb && npm run dev",
     "build-webgl": "BuildWebGL.bat",
     "start-server": "StartServer.bat"
   }
