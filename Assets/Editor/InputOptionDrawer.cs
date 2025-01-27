@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -82,10 +84,15 @@ public class InputOptionDrawer : PropertyDrawer
             SerializedProperty selectedFieldProp = property.FindPropertyRelative("selectedField");
             DrawSelectedField(rect, demoObject, selectedFieldProp, "Vector3");
         }
-        else
+        else if (PropHasEnumValue(mouseEffectTypeProp, InputOption.ClickEffectType.MoveObjectToPointer))
         {
             SerializedProperty targetObjectProp = property.FindPropertyRelative("targetObject");
             EditorGUI.ObjectField(rect, targetObjectProp);
+        }
+        else if (PropHasEnumValue(mouseEffectTypeProp, InputOption.ClickEffectType.CallsMethod))
+        {
+            var methodNames = ReflectionHelper.GetPublicMethodNames(demoObject, "Vector3");
+            DrawMethodToInvokeField(rect, property, methodNames);
         }
     }
 
@@ -93,7 +100,8 @@ public class InputOptionDrawer : PropertyDrawer
     {
         if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.CallsMethod))
         {
-            DrawMethodToInvokeField(rect, property, demoObject);
+            var methodNames = ReflectionHelper.GetPublicMethodNames(demoObject);
+            DrawMethodToInvokeField(rect, property, methodNames);
         }
         else
         {
@@ -111,9 +119,8 @@ public class InputOptionDrawer : PropertyDrawer
         }
     }
 
-    private void DrawMethodToInvokeField(Rect rect, SerializedProperty property, DemoObject demoObject)
+    private void DrawMethodToInvokeField(Rect rect, SerializedProperty property, IList<string> methodNames)
     {
-        var methodNames = ReflectionHelper.GetPublicMethodNames(demoObject);
         if (methodNames.Count > 0)
         {
             SerializedProperty methodToInvokeProp = property.FindPropertyRelative("methodToInvoke");
@@ -151,6 +158,8 @@ public class InputOptionDrawer : PropertyDrawer
                 return "Boolean";
             case InputOption.FieldType.Float:
                 return "Single";
+            case InputOption.FieldType.Integer:
+                return "Int32";
             case InputOption.FieldType.Vector3:
                 return "Vector3";
             default:
@@ -167,6 +176,11 @@ public class InputOptionDrawer : PropertyDrawer
         else if (PropHasEnumValue(fieldTypeProp, InputOption.FieldType.Vector3))
         {
             DrawVector3ValueFields(rect, property, effectTypeProp);
+        }
+        else if (PropHasEnumValue(fieldTypeProp, InputOption.FieldType.Integer))
+        {
+            SerializedProperty intValueProp = property.FindPropertyRelative("intValue");
+            EditorGUI.PropertyField(rect, intValueProp);
         }
     }
 
@@ -206,14 +220,14 @@ public class InputOptionDrawer : PropertyDrawer
 
         if (PropHasEnumValue(effectTypeProp, InputOption.EffectType.ToggleBetweenValues))
         {
-            displayedOptions = new InputOption.FieldType[] { InputOption.FieldType.Float, InputOption.FieldType.Vector3, InputOption.FieldType.Bool };
+            displayedOptions = new InputOption.FieldType[] { InputOption.FieldType.Float, InputOption.FieldType.Integer, InputOption.FieldType.Vector3, InputOption.FieldType.Bool };
         }
         else
         {
-            displayedOptions = new InputOption.FieldType[] { InputOption.FieldType.Float, InputOption.FieldType.Vector3, InputOption.FieldType.Bool };
+            displayedOptions = new InputOption.FieldType[] { InputOption.FieldType.Float, InputOption.FieldType.Integer, InputOption.FieldType.Vector3, InputOption.FieldType.Bool };
         }
 
-        int selectedIndex = Mathf.Max(0, System.Array.IndexOf(displayedOptions, (InputOption.FieldType)fieldTypeProp.enumValueIndex));
+        int selectedIndex = Mathf.Max(0, Array.IndexOf(displayedOptions, (InputOption.FieldType)fieldTypeProp.enumValueIndex));
         selectedIndex = EditorGUI.Popup(rect, "Field Type", selectedIndex, System.Array.ConvertAll(displayedOptions, item => item.ToString()));
         fieldTypeProp.enumValueIndex = (int)displayedOptions[selectedIndex];
     }

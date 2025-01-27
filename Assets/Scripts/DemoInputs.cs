@@ -74,19 +74,13 @@ public class DemoInputs : MonoBehaviour
             return;
         }
 
-        var field = GetField(inputOption.selectedField);
-        if (field == null)
-        {
-            return;
-        }
-
         if (inputOption.IsMouseTrigger)
         {
-            PerformMouseActions(inputOption, target, field);
+            PerformMouseActions(inputOption, target);
         }
     }
 
-    private void PerformMouseActions(InputOption inputOption, MonoBehaviour target, FieldInfo field)
+    private void PerformMouseActions(InputOption inputOption, MonoBehaviour target)
     {
         var mousePosition = Input.mousePosition;
         var worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -94,10 +88,15 @@ public class DemoInputs : MonoBehaviour
         switch (inputOption.clickEffectType)
         {
             case InputOption.ClickEffectType.SetVector3ValueToPointer:
+                var field = GetField(inputOption.selectedField);
                 field.SetValue(target, worldPosition);
                 break;
             case InputOption.ClickEffectType.MoveObjectToPointer:
                 inputOption.targetObject.transform.position = worldPosition;
+                break;
+            case InputOption.ClickEffectType.CallsMethod:
+                var method = target.GetType().GetMethod(inputOption.methodToInvoke);
+                method.Invoke(target, new object[] { worldPosition });
                 break;
             default:
                 return;

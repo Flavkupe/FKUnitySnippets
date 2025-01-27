@@ -15,6 +15,6 @@
     "update-pages": "cd FKUnitySnippetsWeb && npm run update-pages",
     "start-web": "cd FKUnitySnippetsWeb && npm run dev",
     "build-webgl": "BuildWebGL.bat",
-    "start-server": "StartServer.bat"
+    "start-webgl": "python SimpleHTTPServer.py 8080"
   }
 }

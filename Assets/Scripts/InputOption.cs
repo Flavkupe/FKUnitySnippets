@@ -38,6 +38,7 @@ public class InputOption
     {
         SetVector3ValueToPointer,
         MoveObjectToPointer,
+        CallsMethod,
     }
 
     public enum FieldType
@@ -45,6 +46,7 @@ public class InputOption
         Float,
         Vector3,
         Bool,
+        Integer,
     }
 
     public enum DescriptionType
@@ -69,6 +71,8 @@ public class InputOption
     public string methodToInvoke;
 
     public float value;
+
+    public int intValue;
 
     public Vector3 vectorValue;
 
@@ -133,6 +137,17 @@ public class InputOption
                 fieldName = selectedField,
             };
         }
+        else if (fieldType == FieldType.Integer)
+        {
+            var fieldValue = ReflectionHelper.GetIntFieldValue(target, selectedField);
+            return new FloatInputControl
+            {
+                description = description,
+                value = fieldValue,
+                incrementValue = value,
+                fieldName = selectedField,
+            };
+        }
         else if (fieldType == FieldType.Vector3)
         {
             var fieldValue = ReflectionHelper.GetVector3FieldValue(target, selectedField);
@@ -160,7 +175,7 @@ public class InputOption
 
     public string GetDescription()
     {
-        if (descriptionType == DescriptionType.Custom)
+        if (descriptionType == DescriptionType.Custom || trigger == Trigger.None)
         {
             return customDescription;
         }

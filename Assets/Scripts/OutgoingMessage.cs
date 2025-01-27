@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System;
 using UnityEngine;
 
@@ -107,6 +106,25 @@ public class FloatInputControl : AbstractFieldInputControl
     /// </summary>
     [SerializeField]
     public float incrementValue;
+}
+
+
+[Serializable]
+public class IntInputControl : AbstractFieldInputControl
+{
+    public IntInputControl() : base("int") { }
+
+    /// <summary>
+    /// Initial value
+    /// </summary>
+    [SerializeField]
+    public int value;
+
+    /// <summary>
+    /// How much to add/remove per tick
+    /// </summary>
+    [SerializeField]
+    public int incrementValue;
 }
 
 [Serializable]

@@ -61,20 +61,26 @@
     <Analyzer Include="D:\Unity\Editor\6000.0.29f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Projectiles\FireRadially\FireRadially.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Coroutines\Timer\Timer.cs" />
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Projectiles\Projectile\ProjectileSpawner.cs" />
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Interfaces\IDamageable.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Randomization\PerlinNoiseMap\PerlinNoiseMapDemo.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Text\TMPro\ShakyText\ShakyText.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Coroutines\Runner\CoroutineRunner.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Curves\CatmullRomSpline\CatmullRomSpline.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Curves\Bezier\BezierDemo.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\ExtensionFunctions\ExtensionFunctions.cs" />
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Projectiles\Projectile\ArcProjectile.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Randomization\WeightedList\WeightedList.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\OscillatingObject\OscillatingObject.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Randomization\PerlinNoiseMap\PerlinNoiseMap.cs" />
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\MoveAwayFrom\MoveAwayFrom.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\FadingObject\FadingObject.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Curves\CatmullRomSpline\CatmullRomSplineDemo.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Curves\Bezier\Bezier.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Transformations\SpinningObject\SpinningObject.cs" />
+    <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Projectiles\Projectile\Projectile.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Randomization\WeightedList\WeightedListDemo.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Performance\ObjectPool\ObjectPool.cs" />
     <Compile Include="Assets\FKUnitySnippetsLibrary\FKUnitySnippetsLibrary\Coroutines\Timer\TimerDemo.cs" />

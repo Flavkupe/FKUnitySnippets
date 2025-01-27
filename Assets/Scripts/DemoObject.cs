@@ -14,7 +14,7 @@ public class DemoObject : MonoBehaviour
     public string ComponentName => _componentName;
 
     [SerializeField]
-    private Component _targetComponent;
+    private GameObject _targetComponent;
 
     private void Start()
     {
@@ -29,7 +29,7 @@ public class DemoObject : MonoBehaviour
     {
         if (_targetComponent != null)
         {
-            return _targetComponent;
+            return _targetComponent.gameObject.GetComponent(_componentName);
         }
 
         var component = this.GetComponent(_componentName);

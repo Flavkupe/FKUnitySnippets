@@ -28,6 +28,18 @@ public static class ReflectionHelper
         return (float)field.GetValue(target);
     }
 
+    public static int GetIntFieldValue(MonoBehaviour target, string fieldName)
+    {
+        FieldInfo field = GetField(target, fieldName);
+        if (field == null)
+        {
+            Debug.LogError($"Field {fieldName} not found.");
+            return 0;
+        }
+
+        return (int)field.GetValue(target);
+    }
+
     public static bool GetBoolFieldValue(MonoBehaviour target, string fieldName)
     {
         FieldInfo field = GetField(target, fieldName);
@@ -92,7 +104,7 @@ public static class ReflectionHelper
     /// Gets public methods with no parameters.
     /// </summary>
     /// <returns></returns>
-    public static List<string> GetPublicMethodNames(DemoObject demoObject)
+    public static List<string> GetPublicMethodNames(DemoObject demoObject, string withParamType = null)
     {
         var component = demoObject.GetDemoComponent();
         if (component == null)
@@ -105,8 +117,17 @@ public static class ReflectionHelper
         var methodNames = new List<string>();
         foreach (var method in methods)
         {
-            // only return void methods with no parameters
-            if (method.GetParameters().Length == 0 && method.ReturnType.Name == "Void")
+            // only return void methods
+            if (method.ReturnType.Name != "Void")
+            {
+                continue;
+            }
+
+            if (withParamType != null && method.GetParameters().Length == 1 && method.GetParameters()[0].ParameterType.Name == withParamType)
+            {
+                methodNames.Add(method.Name);
+            }
+            else if (withParamType == null && method.GetParameters().Length == 0)
             {
                 methodNames.Add(method.Name);
             }
