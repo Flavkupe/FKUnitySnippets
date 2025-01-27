@@ -9,8 +9,8 @@ set "BUILD_DIR=build"
 REM Sync the local build directory with the S3 bucket
 echo Syncing %BUILD_DIR% with s3://%S3_BUCKET%...
 
-aws s3 cp build/ s3://%S3_BUCKET%/ --recursive --content-encoding br --exclude "*" --include "*.br"
-aws s3 cp build/ s3://%S3_BUCKET%/ --recursive --exclude "*.br"
+aws s3 cp build/ s3://%S3_BUCKET%/ --recursive --content-encoding br --exclude "*" --include "*.br" --region us-east-2
+aws s3 cp build/ s3://%S3_BUCKET%/ --recursive --exclude "*.br" --region us-east-2
 
 REM Invalidate the CloudFront cache
 echo Creating CloudFront invalidation...
